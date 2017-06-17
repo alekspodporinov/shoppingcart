@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ShoppingCart.BLL.ViewModels.ProductListViewModel>
+
+@{
+    Layout = null;
+}
+  
+
+<table class="table">
+    <tr>
+        <th>
+            <div class="h5">
+                <b>Произовдитель</b>
+            </div>
+        </th>
+        <th>
+            <div class="h5">
+                <b>Модель</b>
+            </div>
+        </th>
+        <th>
+            <div class="h5">
+                <b>Код</b>
+            </div>
+        </th>
+        <th>
+            <div class="h5">
+                <b>Цена</b>
+            </div>
+        </th>
+        <th>
+            @Html.ActionLink("Создать новый", "Create", new { parentCategoryId = ViewBag.ParentCategoryId }, new {@class = "pull-right label label-success"})
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manufacturer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @*@Html.ActionLink("Редактировать", "Edit", new {id = item.Id, parentCategoryId = ViewBag.ParentCategoryId}, new {@class = "label label-warning"}) <b>|</b>*@
+            @*@Html.ActionLink("Подробнее", "Details", new { id=item.Id, parentCategoryId = ViewBag.ParentCategoryId }, new { @class = "label label-info" }) <b>|</b>*@
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id, parentCategoryId = ViewBag.ParentCategoryId }, new { @class = "label label-warning" })
+        </td>
+    </tr>
+}
+
+</table>

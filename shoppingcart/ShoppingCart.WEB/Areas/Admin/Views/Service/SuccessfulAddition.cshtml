@@ -1,0 +1,13 @@
+﻿@model ShoppingCart.BLL.ViewModels.Service.ServiceViewModel
+
+@{
+    ViewBag.Title = "Добавлено!";
+}
+
+<div class="alert alert-success">
+    <h3>
+        @Model.Message
+        @Html.ActionLink(Model.TextLnk, Model.RedirectAction, Model.RedirectController, Model.Values, new {@class = "alert-link"})
+    </h3>
+</div>
+

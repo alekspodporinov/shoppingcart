@@ -1,0 +1,160 @@
+﻿@model ShoppingCart.BLL.ViewModels.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="container">
+    @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="row" style="margin-top: 20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form role="form">
+                    <fieldset>
+                        <h2>Войти</h2>
+                        <hr class="colorgraph">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@id = "email", @class = "form-control input-lg", @placeholder = "Электронная почта (Email)"}})
+                            @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@id = "password", @class = "form-control input-lg", @placeholder = "Пароль"}})
+                            @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+                        </div>
+                        <span class="button-checkbox">
+                                <button type="button" class="btn" data-color="info">Запомнить меня</button>
+                                <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                                <a href="" class="btn btn-link pull-right">Забыли пароль?</a>
+                            </span>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Войти">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                @Html.ActionLink("Регистрация", "Register", "Account", new {@class = "btn btn-lg btn-primary btn-block"});
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+        @section scripts{
+            <script>
+                $(function () {
+                    $('.button-checkbox').each(function () {
+                        var $widget = $(this),
+                            $button = $widget.find('button'),
+                            $checkbox = $widget.find('input:checkbox'),
+                            color = $button.data('color'),
+                            settings = {
+                                on: {
+                                    icon: 'glyphicon glyphicon-check'
+                                },
+                                off: {
+                                    icon: 'glyphicon glyphicon-unchecked'
+                                }
+                            };
+
+                        $button.on('click', function () {
+                            $checkbox.prop('checked', !$checkbox.is(':checked'));
+                            $checkbox.triggerHandler('change');
+                            updateDisplay();
+                        });
+
+                        $checkbox.on('change', function () {
+                            updateDisplay();
+                        });
+
+                        function updateDisplay() {
+                            var isChecked = $checkbox.is(':checked');
+                            // Set the button's state
+                            $button.data('state', (isChecked) ? "on" : "off");
+
+                            // Set the button's icon
+                            $button.find('.state-icon')
+                                .removeClass()
+                                .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                            // Update the button's color
+                            if (isChecked) {
+                                $button
+                                    .removeClass('btn-default')
+                                    .addClass('btn-' + color + ' active');
+                            }
+                            else {
+                                $button
+                                    .removeClass('btn-' + color + ' active')
+                                    .addClass('btn-default');
+                            }
+                        }
+                        function init() {
+                            updateDisplay();
+                            // Inject the icon if applicable
+                            if ($button.find('.state-icon').length == 0) {
+                                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+                            }
+                        }
+                        init();
+                    });
+                });
+            </script>
+        }
+
+
+
+
+        @*@model ShoppingCart.BLL.ViewModels.LoginModel
+
+            @{
+                ViewBag.Title = "Login";
+            }
+
+            <h2>Login</h2>
+
+
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>LoginModel</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="LogIn" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }*@

@@ -1,0 +1,52 @@
+﻿@model long?
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="container">
+    <h2>Категория: @ViewBag.NameCategory</h2>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Подкатегории</h4>
+                </div>
+                <div class="panel-body">
+                    @Html.Action("PartialListChildrenCategory", new {parentCategoryId = @Model})
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Характеристики</h4>
+                </div>
+                <div class="panel-body">
+                    @Html.Action("PartialCharacteristicList", "Characteristic", new {parentCategoryId = @Model})
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Товары</h4>
+                </div>
+                <div class="panel-body">
+                    @Html.Action("PartialListOfProduct", "Product", new {parentCategoryId = @Model})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>CKEDITOR.replace("Discription");</script>
+}

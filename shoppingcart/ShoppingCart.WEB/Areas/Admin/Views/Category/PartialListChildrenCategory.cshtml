@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ShoppingCart.BLL.ViewModels.CategoryViewModel>
+    @*TODO:Удалить*@
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <div class="table table-striped table-bordered table-hover">
+        <table class="table">
+            <tr>
+                <th>
+                    <div class="h5">
+                        <b>Название категории</b>
+                    </div>
+                </th>
+                <th>
+                    @Html.ActionLink("Создать новую", "Create", new { parentCategoryId = ViewBag.parentCategoryId, redirectStr = "Details" }, new {@class="pull-right label label-success"})
+                </th>
+            </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, redirectStr = "Details" }, new { @class = "label label-warning" }) <b>|</b>
+                            @Html.ActionLink("Подробнее", "Details", new { parentCategoryId = item.Id }, new { @class = "label label-info" })
+                        </td>
+                    </tr>
+                }
+        </table>
+
+    </div>
+</div>

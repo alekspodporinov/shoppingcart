@@ -1,0 +1,51 @@
+﻿@model ShoppingCart.BLL.ViewModels.CharacteristicViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CharacteristicViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Filter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Filter)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Measure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Measure)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetaValue)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List","Details", "Category",new { area = "Admin", parentCategoryId = Model.ParentCategoryId}, null)
+</p>

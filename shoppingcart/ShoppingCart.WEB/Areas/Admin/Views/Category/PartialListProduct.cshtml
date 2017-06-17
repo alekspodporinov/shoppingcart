@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ShoppingCart.BLL.ViewModels.CategoryViewModel>
+@*TODO:Удалить*@
+<p>
+    @Html.ActionLink("Create New", "Index", "Product")
+</p>
+<div class="table-bordered">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) <b>|</b>
+                    @*@Html.ActionLink("Details", "Details", new {id = item.Id})<b>|</b>*@
+                    @Html.ActionLink("Удалить", "Delete", new {id = item.Id}, new {@class = "label label-danger disabled"})
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

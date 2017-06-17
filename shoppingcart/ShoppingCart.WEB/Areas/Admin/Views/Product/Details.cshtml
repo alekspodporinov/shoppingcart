@@ -1,0 +1,98 @@
+﻿@model ShoppingCart.BLL.ViewModels.ProductUpdateViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentCategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentCategoryId)
+        </dd>
+        @for (var i = 0; i < Model.Characteristics.Count; i++)
+        {
+            @Html.HiddenFor(modelItem => Model.Characteristics[i].CharacteristicId)
+            @Html.HiddenFor(modelItem => Model.Characteristics[i].Id)
+            <dt>
+                @Html.DisplayNameFor(modelItem => Model.Characteristics[i].Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => Model.Characteristics[i].Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(modelItem => Model.Characteristics[i].Value)
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => Model.Characteristics[i].Value)
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, parentCategoryId = Model.ParentCategoryId }) |
+    @Html.ActionLink("Back to List", "Details", "Category", new { area = "Admin", parentCategoryId = Model.ParentCategoryId }, null)
+</p>
